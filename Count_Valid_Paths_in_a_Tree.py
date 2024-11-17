@@ -61,7 +61,7 @@ class Solution:
         count = 0
   
         for i in range(1, n):
-            for j in range(i + 1, n):
+            for j in range(i + 1, n+1):
                 if self.isValidPath(i, j, -1, False, graph, primes):
                     print(f"Found valid path between: {i}, {j}")
                     count += 1
@@ -75,5 +75,5 @@ primes = sol.findPrimes(n)
 graph = sol.buildGraph(edges)
 print(graph)
 print(primes)
-#print(sol.isValidPath(3, 4, -1, False, graph, primes))
-print(sol.countPaths(5, edges))
+#print(sol.isValidPath(1, 6, -1, False, graph, primes))
+print(sol.countPaths(6, edges))
