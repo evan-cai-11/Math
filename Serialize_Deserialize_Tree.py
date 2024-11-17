@@ -17,11 +17,17 @@ class Codec:
             cur = queue.popleft()
             if cur:
                 data.append(cur.val)
+                if len(queue) > 0 or cur.left or cur.right:
 
-                queue.append(cur.left)
-                queue.append(cur.right)
+                    #print(f"push child of {cur.val}, queue size {len(queue)}, left {cur.left}, right: {cur.right}")
+                    queue.append(cur.left)
+                    queue.append(cur.right)
             else:
                 data.append(None)
+
+                # Trim trailing None values
+        while data and data[-1] is None:
+            data.pop()
 
         return data    
         
@@ -56,6 +62,6 @@ class Codec:
 #Your Codec object will be instantiated and called as such:
 ser = Codec()
 deser = Codec()
-root = [1,2,3,None,None,4, None, None, None]
+root = []
 ans = deser.deserialize(root)
 print(ser.serialize(ans))
